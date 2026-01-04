@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Filosofis | Nusantara Heritage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --merah: #e62129;
+            --putih: #ffffff;
+            --abu-bg: #f4f7f6;
+            --hitam: #111111;
+            --teks-abu: #555555;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--putih); color: var(--hitam); line-height: 1.8; overflow-x: hidden; }
+
+        /* HEADER (Konsisten) */
+        header {
+            background-color: var(--merah);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-circle { width: 30px; height: 30px; background: white; border-radius: 50%; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: 600; opacity: 0.8; }
+        .btn-active { background: white; color: var(--merah) !important; padding: 10px 22px; border-radius: 50px; }
+
+        /* HERO BANNER ZOOM */
+        .hero-gallery {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .zoom-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                              url('https://images.unsplash.com/photo-1571401835393-8c5f35328320?q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            animation: slowZoom 30s infinite alternate ease-in-out;
+        }
+        @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.2); } }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; padding: 0 20px; }
+        .hero-content h1 { font-size: clamp(35px, 7vw, 75px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content p { font-size: clamp(14px, 2vw, 18px); font-weight: 300; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* INTRO FILOSOFI (STYLE HOME) */
+        .intro-section { padding: 100px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        @media (max-width: 992px) { .intro-section { grid-template-columns: 1fr; text-align: center; } }
+        .intro-img { border-radius: 40px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .intro-img img { width: 100%; height: auto; display: block; }
+        .intro-text h2 { font-size: 34px; color: var(--merah); margin-bottom: 25px; line-height: 1.2; }
+        .intro-text p { font-size: 15px; color: var(--teks-abu); margin-bottom: 20px; text-align: justify; }
+
+        /* GALLERY GRID SECTION */
+        .gallery-section { background-color: var(--abu-bg); padding: 100px 8%; }
+        .section-heading { text-align: center; margin-bottom: 80px; }
+        .section-heading h2 { font-size: 36px; color: var(--hitam); }
+        .section-heading .line { width: 100px; height: 5px; background: var(--merah); margin: 20px auto; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .gallery-card { background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); transition: 0.4s; }
+        .gallery-card:hover { transform: translateY(-15px); }
+        
+        .card-img { height: 300px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-card:hover .card-img img { transform: scale(1.1); }
+
+        .card-content { padding: 40px; }
+        .card-content h3 { font-size: 24px; color: var(--merah); margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .card-content h4 { font-size: 14px; color: #333; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; }
+        .card-content p { font-size: 14px; color: var(--teks-abu); text-align: justify; margin-bottom: 20px; line-height: 1.6; }
+        
+        .philosophical-note { background: #fff0f0; padding: 20px; border-radius: 15px; border-left: 4px solid var(--merah); }
+        .philosophical-note span { display: block; font-weight: 700; font-size: 12px; color: var(--merah); margin-bottom: 5px; }
+        .philosophical-note p { font-style: italic; margin-bottom: 0; font-size: 13px; color: #444; }
+
+        /* FOOTER */
+        footer { background: #111; color: #ccc; padding: 80px 8% 30px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { color: white; margin-bottom: 25px; font-size: 18px; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--merah); }
+        .footer-bottom { border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo-area">
+        <div class="logo-circle"></div>
+        <strong>NUSANTARA HERITAGE</strong>
+        <span id="realtime-clock" style="font-size: 11px; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 50px; margin-left: 15px; font-weight: 400; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.2);"></span>
+    </div>
+        <nav class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="about1.html">Budaya</a>
+            <a href="galeri.html" class="btn-active">Galeri</a>
+            <a href="contact1.html">Kontak</a>
+        </nav>
+    </header>
+
+    <section class="hero-gallery">
+        <div class="zoom-bg"></div>
+        <div class="hero-content">
+            <h1>Mahakarya Visual</h1>
+            <p>Menyingkap Makna di Balik Estetika Nusantara</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-img">
+            <img src="begadang.jpg" alt="Galeri Filosofi">
+        </div>
+        <div class="intro-text">
+            <h2>Kumpulan Mahakarya Visual Nusantara</h2>
+            <p>Galeri ini bukan sekadar pameran gambar, melainkan sebuah perjalanan spiritual dan intelektual. Setiap objek yang kami sajikan adalah kristalisasi dari pemikiran mendalam para leluhur mengenai hubungan antara manusia, alam semesta, dan sang Pencipta.</p>
+            <p>Di balik setiap ukiran kayu, pola kain, dan arsitektur bangunan, tersimpan bahasa simbolis yang menceritakan tentang harapan, doa, dan pandangan dunia masyarakat Nusantara. Memahami filosofi ini berarti kita sedang mencoba melihat dunia melalui kacamata kearifan lokal yang abadi.</p>
+            <p>Selamat mengeksplorasi mahakarya visual nusantara lengkap dengan penjelasan sejarah dan makna filosofis di balik setiap objek warisan budaya yang tak ternilai harganya.</p>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="section-heading">
+            <h2>Objek Warisan Budaya</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="gallery-grid">
+            
+            <div class="gallery-card">
+                <div class="card-img">
+                    <img src="gunungan.jpg" alt="Gunungan Wayang">
+                </div>
+                <div class="card-content">
+                    <h4>Seni Pertunjukan - Jawa</h4>
+                    <h3>Gunungan Wayang</h3>
+                    <p> Digunakan sejak zaman Walisongo sebagai pembuka dan penutup lakon wayang kulit. Bentuknya yang mengerucut melambangkan alam semesta dan gunung sakral tempat bernaungnya pengetahuan luhur.</p>
+                    <div class="philosophical-note">
+                        <span>Makna Filosofis:</span>
+                        <p>"Kayon melambangkan kehidupan manusia yang harus semakin tinggi budinya dan mengerucut fokusnya hanya kepada Sang Pencipta seiring bertambahnya usia."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <div class="card-img">
+                    <img src="mega.jpg" alt="Batik Mega Mendung">
+                </div>
+                <div class="card-content">
+                    <h4>Seni Kriya - Cirebon</h4>
+                    <h3>Batik Mega Mendung</h3>
+                    <p>Lahir dari akulturasi budaya Tiongkok dan lokal di Kesultanan Cirebon. Bentuk awan yang berulang melambangkan pembawa hujan sebagai sumber kesuburan dan pemberi kehidupan bagi makhluk bumi.</p>
+                    <div class="philosophical-note">
+                        <span>Makna Filosofis:</span>
+                        <p>"Manusia harus mampu meredam amarah dan tetap tenang (sejuk) meski dalam kondisi mendung atau sulit, layaknya awan yang membawa kesejukan bagi sekitarnya."</p>
+                    </div>
+                </div>
+            </div>
+
+          <div class="gallery-card">
+    <div class="card-img">
+        <img src="borobudur.jpg" alt="Candi Borobudur">
+    </div>
+    <div class="card-content">
+        <h4>Arsitektur & Spiritualitas - Jawa Tengah</h4>
+        <h3>Candi Borobudur</h3>
+        <p>Monumen Buddhis terbesar di dunia yang dibangun pada masa Dinasti Syailendra. Struktur bangunannya terdiri dari 2.672 panel relief dan 504 arca Buddha yang tersusun dalam bentuk mandala raksasa.</p>
+        <div class="philosophical-note">
+            <span>Makna Filosofis:</span>
+            <p>"Representasi perjalanan jiwa manusia dari Kamadhatu (dunia keinginan), menuju Rupadhatu (dunia rupa), hingga mencapai Arupadhatu (dunia tanpa rupa/pencerahan sempurna)."</p>
+        </div>
+    </div>
+</div>
+<div class="gallery-card">
+    <div class="card-img">
+        <img src="keris.jpg" alt="Keris Nusantara">
+    </div>
+    <div class="card-content">
+        <h4>Kriya Logam & Simbolisme - Nusantara</h4>
+        <h3>Keris</h3>
+        <p>Mahakarya seni tempa logam yang memadukan besi, baja, dan nikel meteorit melalui ribuan lipatan. Memiliki karakteristik unik pada 'luk' (lekukan) dan 'pamor' (pola guratan) yang muncul pada bilahnya.</p>
+        <div class="philosophical-note">
+            <span>Makna Filosofis:</span>
+            <p>"Simbol Manunggaling Kawula Gusti atau penyatuan antara manusia dengan Sang Pencipta. Setiap lekukannya melambangkan keseimbangan antara kekuatan lahiriah dan ketajaman batiniah."</p>
+        </div>
+    </div>
+</div>
+<div class="gallery-card">
+    <div class="card-img">
+        <img src="toraja.jpg" alt="Rumah Tongkonan">
+    </div>
+    <div class="card-content">
+        <h4>Arsitektur Makrokosmos - Sulawesi Selatan</h4>
+        <h3>Rumah Tongkonan</h3>
+        <p>Rumah adat masyarakat Toraja dengan bentuk atap melengkung menyerupai perahu atau tanduk kerbau. Dibangun menghadap ke Utara sebagai simbol arah kehidupan dan tempat bersemayamnya para leluhur.</p>
+        <div class="philosophical-note">
+            <span>Makna Filosofis:</span>
+            <p>"Representasi hubungan harmonis antara manusia, alam, dan Pencipta (Puang Matua). Struktur bangunannya membagi dunia menjadi tiga: langit sebagai atap, bumi sebagai lantai, dan bawah tanah sebagai kolong."</p>
+        </div>
+    </div>
+</div>
+<div class="gallery-card">
+    <div class="card-img">
+        <img src="parang.jpg" alt="Batik Motif Parang">
+    </div>
+    <div class="card-content">
+        <h4>Seni Tekstil - Jawa</h4>
+        <h3>Batik Motif Parang</h3>
+        <p>Motif batik kuno berbentuk huruf 'S' berulang yang menyerupai ombak atau bentuk mata pedang. Dianggap sebagai motif larangan yang dahulu hanya boleh dikenakan oleh raja dan bangsawan keraton.</p>
+        <div class="philosophical-note">
+            <span>Makna Filosofis:</span>
+            <p>"Kesinambungan perjuangan tanpa henti, serta jalinan tak terputus antara manusia dengan Tuhan, alam, dan sesama. Melambangkan kekuasaan, kewibawaan, dan keabadian."</p>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Nusantara Heritage</h4>
+                <p>Platform dokumentasi budaya digital untuk memperkenalkan kekayaan filosofis bangsa Indonesia ke mata dunia.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about1.html">Budaya</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="contact1.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Lokasi</h4>
+                <p>Tangerang Selatan, Banten<br>info@nusantara.id</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NUSANTARA HERITAGE</p> 
+            <p> <strong> Mona Maryam</strong> - <strong> 251011700175</strong> - <strong> 01SIFP003</strong></p>
+            <p style="opacity: 0.5; font-size: 11px; margin-top: 5px;">Universitas Pamulang - Fakultas Ilmu Komputer</p>
+        </div>
+    </footer>
+<div id="live-notif" style="position: fixed; bottom: 30px; left: 30px; background: white; padding: 15px 25px; border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; z-index: 10000; transform: translateX(-180%); transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-left: 5px solid #e62129;">
+    <div class="pulse-icon" style="width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; position: relative;"></div>
+    <div style="font-size: 13px; color: #333;">
+        <strong id="notif-user" style="color: #111;">...</strong> baru saja <span id="notif-action">...</span>
+    </div>
+</div>
+
+<style>
+    /* Animasi lingkaran hijau berdenyut */
+    .pulse-icon::after {
+        content: ""; position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+        background: #2ecc71; border-radius: 50%; animation: pulse-red 2s infinite;
+    }
+    @keyframes pulse-red {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(3); opacity: 0; }
+    }
+</style>
+<script>
+    // FUNGSI 1: JAM REAL-TIME GLOBAL
+    function startClock() {
+        const clockElement = document.getElementById('realtime-clock');
+        function update() {
+            const now = new Date();
+            const options = { 
+                weekday: 'short', 
+                day: 'numeric', 
+                month: 'short', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            };
+            clockElement.innerText = now.toLocaleDateString('id-ID', options).replace(/\./g, ':');
+        }
+        setInterval(update, 1000);
+        update();
+    }
+
+    // FUNGSI 2: LIVE NOTIFICATION SIMULATOR
+    const users = ["Rizky Pratama", "Siti Nayla", "Andi Wijaya", "Budi Sudarsono", "Dewi Lestari", "Guntur"];
+    const actions = ["mengapresiasi galeri", "membaca materi budaya", "mengirim aspirasi", "melihat warisan UNESCO", "baru saja bergabung"];
+
+    function triggerNotif() {
+        const notif = document.getElementById('live-notif');
+        const userEl = document.getElementById('notif-user');
+        const actionEl = document.getElementById('notif-action');
+
+        // Pilih random data
+        userEl.innerText = users[Math.floor(Math.random() * users.length)];
+        actionEl.innerText = actions[Math.floor(Math.random() * actions.length)];
+
+        // Munculkan notifikasi
+        notif.style.transform = "translateX(0)";
+
+        // Sembunyikan kembali setelah 6 detik
+        setTimeout(() => {
+            notif.style.transform = "translateX(-180%)";
+        }, 6000);
+    }
+
+    // Jalankan saat halaman dimuat
+    window.onload = () => {
+        startClock();
+        // Notifikasi muncul pertama kali setelah 5 detik, lalu berulang setiap 20 detik
+        setTimeout(() => {
+            triggerNotif();
+            setInterval(triggerNotif, 20000);
+        }, 5000);
+    };
+</script>
+</body>
+</html>

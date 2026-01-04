@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksplorasi 38 Provinsi | Nusantara Heritage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --merah: #e62129;
+            --putih: #ffffff;
+            --abu-bg: #f4f7f6;
+            --hitam: #111111;
+            --teks-abu: #555555;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--putih); color: var(--hitam); line-height: 1.8; overflow-x: hidden; }
+
+        /* HEADER */
+        header {
+            background-color: var(--merah);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-circle { width: 30px; height: 30px; background: white; border-radius: 50%; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: 600; opacity: 0.8; }
+        .btn-active { background: white; color: var(--merah) !important; padding: 10px 22px; border-radius: 50px; }
+
+        /* HERO BANNER ZOOM */
+        .hero-culture {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .zoom-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                              url('https://images.unsplash.com/photo-1570191913384-7b4ff11716e7?q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            animation: slowZoom 30s infinite alternate ease-in-out;
+        }
+        @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.2); } }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; padding: 0 20px; }
+        .hero-content h1 { font-size: clamp(35px, 7vw, 75px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content p { font-size: clamp(14px, 2vw, 18px); font-weight: 300; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* INTRO SECTION (STYLE HOME) */
+        .intro-section { padding: 100px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        @media (max-width: 992px) { .intro-section { grid-template-columns: 1fr; text-align: center; } }
+        .intro-img { border-radius: 40px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .intro-img img { width: 100%; height: auto; display: block; }
+        .intro-text h2 { font-size: 34px; color: var(--merah); margin-bottom: 25px; line-height: 1.2; }
+        .intro-text p { font-size: 15px; color: var(--teks-abu); margin-bottom: 20px; text-align: justify; }
+
+        /* MATERI EKSPLORASI 38 PROVINSI */
+        .provinsi-section { background-color: var(--abu-bg); padding: 100px 8%; }
+        .section-heading { text-align: center; margin-bottom: 80px; }
+        .section-heading h2 { font-size: 36px; color: var(--hitam); }
+        .section-heading .line { width: 100px; height: 5px; background: var(--merah); margin: 20px auto; }
+
+        .region-card {
+            background: white;
+            border-radius: 35px;
+            padding: 60px;
+            margin-bottom: 80px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+        }
+        @media (max-width: 1100px) { .region-card { grid-template-columns: 1fr; padding: 40px; } }
+
+        .region-info h3 { font-size: 28px; color: var(--merah); margin-bottom: 20px; }
+        .region-info h4 { font-size: 16px; margin: 20px 0 10px; color: #333; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .region-info p { font-size: 14px; color: var(--teks-abu); text-align: justify; margin-bottom: 15px; }
+        
+        .list-prov { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .prov-tag { background: #fff0f0; color: var(--merah); padding: 5px 15px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+
+        .social-structure {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid var(--merah);
+        }
+        .social-structure h4 { color: var(--hitam); margin-bottom: 10px; font-size: 18px; }
+        .social-structure p { font-size: 14px; font-style: italic; color: #444; }
+
+        /* FOOTER */
+        footer { background: #111; color: #ccc; padding: 80px 8% 30px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { color: white; margin-bottom: 25px; font-size: 18px; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--merah); }
+        .footer-bottom { border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo-area">
+        <div class="logo-circle"></div>
+        <strong>NUSANTARA HERITAGE</strong>
+        <span id="realtime-clock" style="font-size: 11px; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 50px; margin-left: 15px; font-weight: 400; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.2);"></span>
+    </div>
+        <nav class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="about1.html" class="btn-active">Budaya</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="contact1.html">Kontak</a>
+        </nav>
+    </header>
+
+    <section class="hero-culture">
+        <div class="zoom-bg"></div>
+        <div class="hero-content">
+            <h1>Eksplorasi Wilayah</h1>
+            <p>Menjelajahi Adat Istiadat 38 Provinsi Nusantara</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="intro-img">
+            <img src="peta.jpg" alt="Struktur Sosial">
+        </div>
+        <div class="intro-text">
+            <h2>Struktur Sosial & Harmoni Adat</h2>
+            <p>Indonesia terdiri dari 38 provinsi yang masing-masing memegang teguh identitas wilayahnya. Eksplorasi budaya bukan hanya soal pakaian atau tarian, melainkan pemahaman mendalam tentang bagaimana masyarakat tersebut mengorganisir diri mereka melalui struktur sosial yang diwariskan leluhur.</p>
+            <p>Dari sistem Matrilineal di barat hingga sistem Klen di timur, struktur sosial ini menjadi pondasi bagi hukum adat, pembagian tanah waris, hingga upacara sakral. Pemahaman akan struktur ini sangat penting untuk melihat bagaimana harmoni di Indonesia tetap terjaga di tengah kemajemukan yang sangat kontras.</p>
+            <p>Mari kita telusuri karakteristik adat istiadat dan tatanan masyarakat di setiap gugusan pulau besar di Indonesia.</p>
+        </div>
+    </section>
+
+    <section class="provinsi-section">
+        <div class="section-heading">
+            <h2>Gugusan Budaya Nusantara</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="region-card">
+            <div class="region-info">
+                <h3>Wilayah Sumatera</h3>
+                <p>Sumatera memiliki karakteristik adat Melayu yang kuat dengan pengaruh hukum Islam yang mendalam. Wilayah ini merupakan pintu masuk akulturasi budaya dunia ke Nusantara.</p>
+                <h4>38 Provinsi Terkait:</h4>
+                <div class="list-prov">
+                    <span class="prov-tag">Aceh</span> <span class="prov-tag">Sumut</span> <span class="prov-tag">Sumbar</span> <span class="prov-tag">Riau</span> <span class="prov-tag">Kepri</span>
+                    <span class="prov-tag">Jambi</span> <span class="prov-tag">Bengkulu</span> <span class="prov-tag">Sumsel</span> <span class="prov-tag">Babel</span> <span class="prov-tag">Lampung</span>
+                </div>
+            </div>
+            <div class="social-structure">
+                <h4>Struktur Sosial Masyarakat</h4>
+                <p>Masyarakat Sumatera memiliki struktur sosial yang bervariasi antara Egaliter dan Hierarkis. Di Minangkabau (Sumbar), berlaku sistem <strong>Matrilineal</strong> di mana garis keturunan dan harta pusaka ditarik dari pihak ibu. Sementara di Batak (Sumut), berlaku sistem <strong>Patrilineal</strong> yang kuat dengan sistem kekerabatan marga (Dalihan Na Tolu) yang mengatur interaksi sosial antar keluarga besar secara ketat.</p>
+            </div>
+        </div>
+
+        <div class="region-card">
+            <div class="region-info">
+                <h3>Wilayah Jawa</h3>
+                <p>Jawa dikenal dengan kehalusan budi pekerti dan filosofi hidup yang penuh simbolisme, dipengaruhi oleh sejarah panjang kerajaan agraris besar seperti Mataram.</p>
+                <h4>38 Provinsi Terkait:</h4>
+                <div class="list-prov">
+                    <span class="prov-tag">Banten</span> <span class="prov-tag">DKI Jakarta</span> <span class="prov-tag">Jawa Barat</span> 
+                    <span class="prov-tag">Jawa Tengah</span> <span class="prov-tag">DI Yogyakarta</span> <span class="prov-tag">Jawa Timur</span>
+                </div>
+            </div>
+            <div class="social-structure">
+                <h4>Struktur Sosial Masyarakat</h4>
+                <p>Struktur sosial di Jawa bersifat <strong>Bilateral/Parental</strong>, di mana kedudukan ayah dan ibu dianggap seimbang. Masyarakat Jawa secara historis memiliki lapisan sosial yang dikenal dengan istilah <strong>Santri, Abangan, dan Priyayi</strong>. Tatanan sosial sangat dipengaruhi oleh konsep "Unggah-Ungguh" (etika berbicara) yang mengatur bagaimana seseorang bersikap berdasarkan usia dan kedudukan sosial demi menjaga harmoni komunal.</p>
+            </div>
+        </div>
+
+        <div class="region-card">
+            <div class="region-info">
+                <h3>Wilayah Kalimantan</h3>
+                <p>Budaya Kalimantan didominasi oleh kearifan suku Dayak yang menyatu dengan alam hutan tropis serta budaya pesisir yang kental dengan Kesultanan Melayu.</p>
+                <h4>38 Provinsi Terkait:</h4>
+                <div class="list-prov">
+                    <span class="prov-tag">Kalbar</span> <span class="prov-tag">Kalteng</span> <span class="prov-tag">Kalsel</span> <span class="prov-tag">Kaltim</span> <span class="prov-tag">Kaltara</span>
+                </div>
+            </div>
+            <div class="social-structure">
+                <h4>Struktur Sosial Masyarakat</h4>
+                <p>Masyarakat Dayak di pedalaman Kalimantan memiliki struktur sosial yang berpusat pada <strong>Rumah Betang (Rumah Panjang)</strong>. Di sini, struktur sosial bersifat komunal-kolektif; satu rumah bisa dihuni puluhan kepala keluarga yang dipimpin oleh seorang Kepala Adat. Keputusan diambil melalui musyawarah besar, dan status sosial seringkali dilihat dari penguasaan terhadap ritual adat dan kearifan dalam menjaga keseimbangan alam.</p>
+            </div>
+        </div>
+
+        <div class="region-card">
+            <div class="region-info">
+                <h3>Wilayah Papua</h3>
+                <p>Papua memiliki keberagaman suku bangsa tertinggi di Indonesia dengan lebih dari 250 bahasa daerah dan tradisi pegunungan serta pesisir yang kontras.</p>
+                <h4>38 Provinsi Terkait:</h4>
+                <div class="list-prov">
+                    <span class="prov-tag">Papua</span> <span class="prov-tag">Papua Barat</span> <span class="prov-tag">Papua Tengah</span> <span class="prov-tag">Papua Pegunungan</span> <span class="prov-tag">Papua Selatan</span> <span class="prov-tag">Papua Barat Daya</span>
+                </div>
+            </div>
+            <div class="social-structure">
+                <h4>Struktur Sosial Masyarakat</h4>
+                <p>Struktur sosial di Papua sangat bergantung pada sistem <strong>Klen dan Kepemimpinan Big Man</strong> (Pria Berwibawa). Di wilayah pegunungan, seorang pemimpin dipilih bukan berdasarkan keturunan, melainkan karena kemampuan diplomasi, keberanian, dan kemurahan hatinya dalam membagi kekayaan. Hubungan sosial dijalin melalui upacara bakar batu yang melambangkan rekonsiliasi dan persaudaraan antar suku.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Nusantara Heritage</h4>
+                <p>Platform edukasi warisan 38 provinsi Indonesia untuk menjaga api peradaban nusantara tetap menyala.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Tautan Cepat</h4>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about1.html">Budaya</a></li>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="contact1.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informasi</h4>
+                <p>Universitas Pamulang<br>Tangerang Selatan<br>info@nusantara.id</p>
+            </div>
+        </div>
+       <div class="footer-bottom">
+            <p>© 2026 NUSANTARA HERITAGE</p> 
+            <p> <strong> Mona Maryam</strong> - <strong> 251011700175</strong> - <strong> 01SIFP003</strong></p>
+            <p style="opacity: 0.5; font-size: 11px; margin-top: 5px;">Universitas Pamulang - Fakultas Ilmu Komputer</p>
+        </div>
+    </footer>
+<div id="live-notif" style="position: fixed; bottom: 30px; left: 30px; background: white; padding: 15px 25px; border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; z-index: 10000; transform: translateX(-180%); transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-left: 5px solid #e62129;">
+    <div class="pulse-icon" style="width: 12px; height: 12px; background: #2ecc71; border-radius: 50%; position: relative;"></div>
+    <div style="font-size: 13px; color: #333;">
+        <strong id="notif-user" style="color: #111;">...</strong> baru saja <span id="notif-action">...</span>
+    </div>
+</div>
+
+<style>
+    /* Animasi lingkaran hijau berdenyut */
+    .pulse-icon::after {
+        content: ""; position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+        background: #2ecc71; border-radius: 50%; animation: pulse-red 2s infinite;
+    }
+    @keyframes pulse-red {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(3); opacity: 0; }
+    }
+</style>
+<script>
+    // FUNGSI 1: JAM REAL-TIME GLOBAL
+    function startClock() {
+        const clockElement = document.getElementById('realtime-clock');
+        function update() {
+            const now = new Date();
+            const options = { 
+                weekday: 'short', 
+                day: 'numeric', 
+                month: 'short', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            };
+            clockElement.innerText = now.toLocaleDateString('id-ID', options).replace(/\./g, ':');
+        }
+        setInterval(update, 1000);
+        update();
+    }
+
+    // FUNGSI 2: LIVE NOTIFICATION SIMULATOR
+    const users = ["Rizky Pratama", "Siti Nayla", "Andi Wijaya", "Budi Sudarsono", "Dewi Lestari", "Guntur"];
+    const actions = ["mengapresiasi galeri", "membaca materi budaya", "mengirim aspirasi", "melihat warisan UNESCO", "baru saja bergabung"];
+
+    function triggerNotif() {
+        const notif = document.getElementById('live-notif');
+        const userEl = document.getElementById('notif-user');
+        const actionEl = document.getElementById('notif-action');
+
+        // Pilih random data
+        userEl.innerText = users[Math.floor(Math.random() * users.length)];
+        actionEl.innerText = actions[Math.floor(Math.random() * actions.length)];
+
+        // Munculkan notifikasi
+        notif.style.transform = "translateX(0)";
+
+        // Sembunyikan kembali setelah 6 detik
+        setTimeout(() => {
+            notif.style.transform = "translateX(-180%)";
+        }, 6000);
+    }
+
+    // Jalankan saat halaman dimuat
+    window.onload = () => {
+        startClock();
+        // Notifikasi muncul pertama kali setelah 5 detik, lalu berulang setiap 20 detik
+        setTimeout(() => {
+            triggerNotif();
+            setInterval(triggerNotif, 20000);
+        }, 5000);
+    };
+</script>
+</body>
+</html>
